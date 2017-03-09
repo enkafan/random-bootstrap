@@ -1,0 +1,54 @@
+﻿@model RandomBootstrap.Models.RandomViewModel
+
+@section Styles
+{
+    <link rel="stylesheet" href="@Url.Action("Bootstrap", "Home", new {Model.Seed})" />
+}
+
+@{
+    var random = new Random();
+}
+
+<p>Hey @Model.Seed</p>
+<pre><code>@Html.Raw(Model.Content)</code></pre>
+<div>
+    <button class="btn btn-primary">Copy Content</button> <a class="btn btn-secondary" href="@Url.Action("Index", "Home", new {Seed = random.Next() })">Get a new one</a>
+</div>
+<h2>Some text</h2>
+<p><strong>Nullam invidunt mel te</strong>, an usu tale tritani placerat. Pro cu cibo nulla consequat, in soleat diceret mandamus vim. Ad eum pertinacia sadipscing, iusto recteque eam et, eu nec adipisci rationibus. Ut nam meliore denique splendide.</p>
+
+<p>Eu munere perpetua mel, <em>sit integre persius at</em>. Dicit bonorum invidunt vim te, tritani delenit vis cu. Usu eu vidit tamquam electram. Per altera tamquam alterum an, ne has prima atqui ponderum. Ius novum nihil feugiat eu. An per graeci invidunt rationibus.</p>
+
+<p>Ea cum liber decore facilisis. Quo ex quot audire, ne tale diceret detracto vis, eam ei viderer definitiones. Vim id tantas altera. Diceret electram ius cu. Mel at diam veri aliquam, eam quas possim cu. Elit pertinax sapientem sed ne, vim voluptaria necessitatibus et.</p>
+<h2>Some Buttons</h2>
+<div>
+    <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+    <button type="button" class="btn btn-primary">Primary</button>
+
+    <!-- Secondary, outline button -->
+    <button type="button" class="btn btn-secondary">Secondary</button>
+
+    <!-- Indicates a successful or positive action -->
+    <button type="button" class="btn btn-success">Success</button>
+
+    <!-- Contextual button for informational alert messages -->
+    <button type="button" class="btn btn-info">Info</button>
+
+    <!-- Indicates caution should be taken with this action -->
+    <button type="button" class="btn btn-warning">Warning</button>
+
+    <!-- Indicates a dangerous or potentially negative action -->
+    <button type="button" class="btn btn-danger">Danger</button>
+
+    <!-- Deemphasize a button by making it look like a link while maintaining button behavior -->
+    <button type="button" class="btn btn-link">Link</button>
+</div>
+<h2>Some Badges</h2>
+<div>
+    <span class="badge badge-default">Default</span>
+    <span class="badge badge-primary">Primary</span>
+    <span class="badge badge-success">Success</span>
+    <span class="badge badge-info">Info</span>
+    <span class="badge badge-warning">Warning</span>
+    <span class="badge badge-danger">Danger</span>
+</div>
