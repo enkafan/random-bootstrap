@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using RandomBootstrap.Services;
+using RandomBootstrap.Services.Colors;
+using RandomBootstrap.Services.Fonts;
 
 namespace RandomBootstrap
 {
@@ -25,6 +28,8 @@ namespace RandomBootstrap
         {
             // Add framework services.
             services.AddTransient<IBootstrapRandomGenerator, BootstrapRandomGenerator>();
+            services.AddTransient<IFontService, FontService>();
+            services.AddTransient<IColorService, ColorService>();
             services.AddMemoryCache();
             services.AddMvc();
         }

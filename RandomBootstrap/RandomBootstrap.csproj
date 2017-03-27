@@ -7,8 +7,19 @@
   <PropertyGroup>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
   </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="LibSassHost" Version="1.0.0" />
+    <Content Include="wwwroot\css\highlight.css" />
+    <Content Include="wwwroot\css\monokai.css" />
+    <Content Include="wwwroot\js\highlight.pack.js" />
+    <Content Include="wwwroot\material_design.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AngleSharp" Version="0.9.9" />
+    <PackageReference Include="LibSassHost" Version="1.0.2" />
     <PackageReference Include="LibSassHost.Native.win-x64" Version="1.0.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
@@ -17,12 +28,10 @@
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.1" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="wwwroot\css\" />
   </ItemGroup>
 
 </Project>
