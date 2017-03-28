@@ -51,6 +51,27 @@ namespace RandomBootstrap.Services
             "100.0%"
         };
 
+        private static readonly string[] NavbarShadows =
+        {
+            "none",
+            "0px 2px 3px rgba(0, 0, 0, 0.04)",
+            "0px 3px 5px rgba(0, 0, 0, 0.1)"
+        };
+
+        private static readonly string[] NavbarPadding =
+        {
+            ".5rem",
+            ".75rem",
+            "1rem"
+        };
+
+        private static readonly string[] NavbarBottomBorder =
+        {
+            "1px solid darken($brand-primary, 10%);",
+            "1px solid darken($brand-primary, 25%);",
+            "none"
+        };
+
         public BootstrapRandomGenerator(IHostingEnvironment env, IMemoryCache memoryCache, IFontService fontService, IColorService colorService)
         {
             if (_bootstrapPath == null)
@@ -115,6 +136,13 @@ namespace RandomBootstrap.Services
             stringBuilder.AppendLine($@"$border-radius: .{borderRadius}rem !default;");
             stringBuilder.AppendLine($"$border-radius-lg: .{borderRadius + 5}rem !default;");
             stringBuilder.AppendLine($"$border-radius-sm: .{borderRadius - 5}rem !default;");
+
+            stringBuilder.AppendLine();
+            stringBuilder.AppendLine("// the navbar is ubiquitious with bootstrap. at least tweak it a bit just to mix things up");
+            stringBuilder.AppendLine($"$navbar-padding-y: {random.PickItem(NavbarPadding)};");
+            stringBuilder.AppendLine(
+                $".navbar {{ border-bottom: {random.PickItem(NavbarBottomBorder)}; box-shadow: {random.PickItem(NavbarShadows)}; }}");
+
             return stringBuilder.ToString();
         }
 
