@@ -97,23 +97,24 @@ namespace RandomBootstrap.Services
 
             stringBuilder.AppendLine();
             stringBuilder.AppendLine("// pick two random material design colors and set the greys to the material design pallette");
-            stringBuilder.AppendLine($@"$gray-dark: {materialColors.grey._900} !default;
-$gray: {materialColors.grey._700} !default;
-$gray-light: {materialColors.grey._500} !default;
-$gray-lighter: {materialColors.grey._300} !default;
-$gray-lightest: {materialColors.grey._100} !default;");
+            stringBuilder.AppendLine($"$gray-dark: {materialColors.grey._900} !default;");
+            stringBuilder.AppendLine($"$gray: {materialColors.grey._700} !default;");
+            stringBuilder.AppendLine($"$gray-light: {materialColors.grey._500} !default;");
+            stringBuilder.AppendLine($"$gray-lighter: {materialColors.grey._300} !default;");
+            stringBuilder.AppendLine($"$gray-lightest: {materialColors.grey._100} !default;");
 
-            stringBuilder.AppendLine($@"$brand-primary: {primary} !default;
-$brand-success: {secondary} !default;
-$brand-info: {secondary} !default;
-$brand-warning: {secondary} !default;
-$brand-danger: {secondary} !default;
-$brand-inverse: $gray-dark !default;");
+            stringBuilder.AppendLine($@"$brand-primary: {primary} !default;");
+            stringBuilder.AppendLine($"$brand-success: {secondary} !default;");
+            stringBuilder.AppendLine($"$brand-info: {secondary} !default;");
+            stringBuilder.AppendLine($"$brand-warning: {secondary} !default;");
+            stringBuilder.AppendLine($"$brand-danger: {secondary} !default;");
+            stringBuilder.AppendLine($"$brand-inverse: $gray-dark !default;");
 
-            stringBuilder.AppendLine("// slight changes to things like border radi");
-            stringBuilder.AppendLine($@"$border-radius: .{borderRadius}rem !default;
-$border-radius-lg: .{borderRadius + 5}rem !default;
-$border-radius-sm: .{borderRadius - 5}rem !default;");
+            stringBuilder.AppendLine();
+            stringBuilder.AppendLine("// tweak the border radius");
+            stringBuilder.AppendLine($@"$border-radius: .{borderRadius}rem !default;");
+            stringBuilder.AppendLine($"$border-radius-lg: .{borderRadius + 5}rem !default;");
+            stringBuilder.AppendLine($"$border-radius-sm: .{borderRadius - 5}rem !default;");
             return stringBuilder.ToString();
         }
 

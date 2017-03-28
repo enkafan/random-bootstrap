@@ -19,7 +19,7 @@ namespace RandomBootstrap.Services.Colors
         {
             var filePath = Path.Combine(_env.WebRootPath, "material_design.json");
 
-            using (var fileStream = File.Open(filePath, FileMode.Open))
+            using (var fileStream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 var result = new byte[fileStream.Length];
                 await fileStream.ReadAsync(result, 0, (int) fileStream.Length);
