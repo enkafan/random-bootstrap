@@ -17,7 +17,7 @@
 <p>Place the following code in _custom.scss and use a tool like libsass to generate your custom bootstrap theme.</p>
 <pre><code class="scss">@Html.Raw(Model.Content)</code></pre>
 <div>
-    <button class="btn btn-primary btn-copy-it">Copy Content</button> or <a class="btn btn-secondary" href="@Url.Action("Index", "Home", new {Seed = random.Next() })">Get a new one</a>
+    <button class="btn btn-primary btn-copy-it">Copy Content</button> or <a class="btn btn-info" href="@Url.Action("Index", "Home", new {Seed = random.Next() })">Get a new one</a>
 </div>
 <h2 contenteditable="true">My Editable Heading</h2>
 <div contenteditable="true">

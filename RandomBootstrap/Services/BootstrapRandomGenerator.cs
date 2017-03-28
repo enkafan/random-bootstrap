@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LibSassHost;
@@ -39,10 +40,12 @@ namespace RandomBootstrap.Services
             c => c.teal,
             c => c.yellow
         };
+
         private static readonly Func<MaterialDesignColors.IColor, string>[] Hues = {
             color => color._700,
             color => color._800,
-            color => color._600
+            color => color._600,
+            color => color._900
         };
 
         private static readonly string[] BaseFontSizes = {
@@ -97,8 +100,10 @@ namespace RandomBootstrap.Services
             var gradients = random.Bool();
             var fontPair = random.PickItem(fontPairs);
             var hue = random.PickItem(Hues);
-            var primary = hue.Invoke(random.PickItem(ColorLookups).Invoke(materialColors));
-            var secondary = hue.Invoke(random.PickItem(ColorLookups).Invoke(materialColors));
+            var primaryColor = random.PickItem(ColorLookups).Invoke(materialColors);
+            var colorsWithoutPrimary = ColorLookups.Where(i => i.Invoke(materialColors)._700 != primaryColor._700).ToArray();
+            var primary = hue.Invoke(primaryColor);
+            var secondary = hue.Invoke(random.PickItem(colorsWithoutPrimary).Invoke(materialColors));
             var borderRadius = 20 + random.Next(0, 5) * 5;
 
             stringBuilder.AppendLine("// set the base font for the site. rem sizing will adjust the rest");
@@ -145,6 +150,7 @@ namespace RandomBootstrap.Services
 
             return stringBuilder.ToString();
         }
+
 
         public async Task<string> GetBootstrapAsync(int seed)
         {
