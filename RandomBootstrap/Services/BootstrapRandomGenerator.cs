@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +18,7 @@ namespace RandomBootstrap.Services
         private readonly IFontService _fontService;
         private readonly IColorService _colorService;
 
-        private static readonly Func<MaterialDesignColors, MaterialDesignColors.IColor>[] ColorLookups = new Func<MaterialDesignColors, MaterialDesignColors.IColor>[]
-        {
+        private static readonly Func<MaterialDesignColors, MaterialDesignColors.IColor>[] ColorLookups = {
             c => c.amber,
             c => c.blue,
             c => c.bluegrey,
@@ -39,18 +39,16 @@ namespace RandomBootstrap.Services
             c => c.teal,
             c => c.yellow
         };
-        private static readonly Func<MaterialDesignColors.IColor, string>[] Hues = new Func<MaterialDesignColors.IColor, string>[]
-        {
+        private static readonly Func<MaterialDesignColors.IColor, string>[] Hues = {
             color => color._700,
             color => color._800,
             color => color._600
         };
 
-        private static readonly string[] BaseFontSizes = new[]
-        {
-            "14px",
-            "15px",
-            "16px"
+        private static readonly string[] BaseFontSizes = {
+            "87.5%",
+            "93.8%",
+            "100.0%"
         };
 
         public BootstrapRandomGenerator(IHostingEnvironment env, IMemoryCache memoryCache, IFontService fontService, IColorService colorService)
@@ -132,9 +130,37 @@ $border-radius-sm: .{borderRadius - 5}rem !default;");
 @import 'variables';
 @import 'bootstrap';
 ";
+                SassCompiler.FileManager = CustomFileManager.Instance;
                 var result = SassCompiler.Compile(input, options);
                 return result.CompiledContent;
             });
         }
+    }
+
+    internal class CustomFileManager : IFileManager
+    {
+        public static CustomFileManager Instance = new CustomFileManager();
+        private static readonly IFileManager InnerFileManager = FileManager.Instance;
+
+        public string GetCurrentDirectory()
+        {
+            return InnerFileManager.GetCurrentDirectory();
+        }
+
+        // we are going to to be reusing this over and over so try and cache everything
+        // to speed it up
+        private static readonly ConcurrentDictionary<string, bool> FileExistsConcurrentDictionary = new ConcurrentDictionary<string, bool>();
+        public bool FileExists(string path) => FileExistsConcurrentDictionary.GetOrAdd(path, s => InnerFileManager.FileExists(s));
+
+        private static readonly ConcurrentDictionary<string, bool> IsAbsolutePathDictionary = new ConcurrentDictionary<string, bool>();
+        public bool IsAbsolutePath(string path) => IsAbsolutePathDictionary.GetOrAdd(path, s => InnerFileManager.IsAbsolutePath(s));
+
+        private static readonly ConcurrentDictionary<string, string> ToAbsolutePathDictionary = new ConcurrentDictionary<string, string>();
+        public string ToAbsolutePath(string path) => ToAbsolutePathDictionary.GetOrAdd(path, s => InnerFileManager.ToAbsolutePath(s));
+
+        private static readonly ConcurrentDictionary<string, string> FileContentDictionary = new ConcurrentDictionary<string, string>();
+        public string ReadFile(string path) => FileContentDictionary.GetOrAdd(path, s => InnerFileManager.ReadFile(s));
+
+        public bool SupportsConversionToAbsolutePath => InnerFileManager.SupportsConversionToAbsolutePath;
     }
 }
