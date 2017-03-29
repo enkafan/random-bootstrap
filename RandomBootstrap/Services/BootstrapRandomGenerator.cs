@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -134,11 +133,11 @@ namespace RandomBootstrap.Services
 
             stringBuilder.AppendLine($@"$brand-primary: {primaryHue.Color}; // {primaryColor.Name} - {primaryHue.Name}");
             stringBuilder.AppendLine($@"$brand-secondary: {secondaryHue.Color}; // {secondaryColor.Name} - {secondaryHue.Name}");
-            stringBuilder.AppendLine($"$brand-success: $brand-secondary;");
-            stringBuilder.AppendLine($"$brand-info: $brand-secondary;");
-            stringBuilder.AppendLine($"$brand-warning: $brand-secondary;");
-            stringBuilder.AppendLine($"$brand-danger: $brand-secondary;");
-            stringBuilder.AppendLine($"$brand-inverse: $gray-dark;");
+            stringBuilder.AppendLine("$brand-success: $brand-secondary;");
+            stringBuilder.AppendLine("$brand-info: $brand-secondary;");
+            stringBuilder.AppendLine("$brand-warning: $brand-secondary;");
+            stringBuilder.AppendLine("$brand-danger: $brand-secondary;");
+            stringBuilder.AppendLine("$brand-inverse: $gray-dark;");
 
             stringBuilder.AppendLine();
             stringBuilder.AppendLine("// tweak the border radius");
