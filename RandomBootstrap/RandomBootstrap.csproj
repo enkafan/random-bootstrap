@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\colors.json" />
     <Content Include="wwwroot\css\highlight.css" />
     <Content Include="wwwroot\js\highlight.pack.js" />
     <Content Include="wwwroot\material_design.json">

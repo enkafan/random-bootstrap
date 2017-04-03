@@ -11,15 +11,25 @@
         .body-content pre code {
             border: 1px solid #ccc;
             font-size: 12px;
+            max-height: 20rem;
         }
+
+        span.github a { color: inherit; }
         span.github svg {
             fill: currentColor;
             vertical-align: text-bottom;
-            color: #fff;
             height: 2rem;
         }
 
         h2 {margin-top:2rem !important;}
+
+        .static-popover .popover {
+            position: relative;
+            display: block;
+            float: left;
+            width: 260px;
+            margin: 1.25rem !important;
+        }
     </style>
     <link href="~/css/highlight.css" rel="stylesheet" />
     @RenderSection("Styles", false)
@@ -27,7 +37,7 @@
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <body>
-<nav class="navbar navbar-inverse bg-primary">
+<nav class="navbar navbar-custom">
     <div class="container">
         <a class="navbar-brand" href="@Url.Action("Index", "Home")">Random Bootstrap Theme</a>
         <span class="navbar-text github">

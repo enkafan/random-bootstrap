@@ -13,8 +13,8 @@
     var random = new Random();
 }
 
-<h2>_custom.scss</h2>
-<p>Place the following code in _custom.scss and use a tool like libsass to generate your custom bootstrap theme.</p>
+<h2>custom.scss</h2>
+<p>Place the following code in <code>_custom.scss</code> and use a tool like libsass to generate your custom bootstrap theme.</p>
 <pre><code class="scss">@Html.Raw(Model.Content)</code></pre>
 <div>
     <button class="btn btn-primary btn-copy-it">Copy Content</button> or <a class="btn btn-info" href="@Url.Action("Index", "Home", new {Seed = random.Next() })">Get a new one</a>
@@ -22,7 +22,13 @@
 <h2>How it Works</h2>
 <ul>
     <li>We store a list of font pairings from <a href="http://fontpair.co/">FontPair.co</a>. These make up the heading and body fonts.</li>
-    <li>We pick two colors from a list of <a href="https://material.io/guidelines/style/color.html">Google's material design color pallette</a>. We then pick a hue from 600-900 from the color swatches and use that for both colors. </li>
+    <li>We pick a either a light or a dark color as the navbar color.
+        <ul>
+            <li>If we pick a dark color then this color is used as the primary color for the site.</li>
+            <li>If we pick a light color then we pick a dark shade of that color as the primary color for the site.</li>
+            <li>A harmonious color is picked as the secondary color.</li>
+        </ul>
+    </li>
     <li>We then tweak some settings to try and differentiate things a bit more:
         <ul>
             <li>Randomize whether elements have shadows, gradients and rounded edges.</li>
@@ -37,7 +43,7 @@
 <ul>
     <li>This isn't a bootstrap theme builder. It just throws together something random that should look ok for demo site when you don't want it to look like stock bootstrap.</li>
     <li>This doesn't produce the CSS for ya. You'll need to copy and paste the SCSS above and generate that as part of your build process.</li>
-    <li>We only pick two colors, a primary and a secondary. The standard green, teal, yellow and red for buttons kind of prevents us from using those colors as our primary theme if we are married to them. This uses the same secondary color for all of them and moves on with life.</li>    
+    <li>We only pick two colors, a primary and a secondary. The standard green, teal, yellow and red for buttons kind of prevents us from using those colors as our primary theme if we are married to them. This uses the same secondary color for all of them and moves on with life.</li>
 </ul>
 
 <h2 contenteditable="true">My Editable Heading</h2>
@@ -58,7 +64,7 @@
     <button type="button" class="btn btn-link">Link</button>
 </div>
 
-<h2>Table Time</h2>
+<h2>Table Example</h2>
 <table class="table">
     <thead>
     <tr>
@@ -90,7 +96,7 @@
     </tbody>
 </table>
 
-<h2>Some Badges</h2>
+<h2>Badges</h2>
 <div>
     <span class="badge badge-default">Default</span>
     <span class="badge badge-primary">Primary</span>
@@ -100,6 +106,39 @@
     <span class="badge badge-danger">Danger</span>
 </div>
 
+<h2>Popovers</h2>
+<div class="static-popover">
+    <div class="popover popover-top">
+        <h3 class="popover-title">Popover top</h3>
+        <div class="popover-content">
+            <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+        </div>
+    </div>
+
+    <div class="popover popover-right">
+        <h3 class="popover-title">Popover right</h3>
+        <div class="popover-content">
+            <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+        </div>
+    </div>
+
+    <div class="popover popover-bottom">
+        <h3 class="popover-title">Popover bottom</h3>
+
+        <div class="popover-content">
+            <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+        </div>
+    </div>
+
+    <div class="popover popover-left">
+        <h3 class="popover-title">Popover left</h3>
+        <div class="popover-content">
+            <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+</div>
 
 @section Scripts
 {

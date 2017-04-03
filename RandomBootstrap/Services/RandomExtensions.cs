@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace RandomBootstrap.Services
 {
@@ -9,9 +10,23 @@ namespace RandomBootstrap.Services
             return random.Next(100) <= probability;
         }
 
-        public static T PickItem<T>(this Random random, T[] items)
+        public static T PickItem<T>(this Random rng, IEnumerable<T> source)
         {
-            return items[random.Next(0, items.Length)];
+            T current = default(T);
+            int count = 0;
+            foreach (T element in source)
+            {
+                count++;
+                if (rng.Next(count) == 0)
+                {
+                    current = element;
+                }
+            }
+            if (count == 0)
+            {
+                throw new InvalidOperationException("Sequence was empty");
+            }
+            return current;
         }
     }
 }
