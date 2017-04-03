@@ -57,8 +57,9 @@ namespace RandomBootstrap.Services
         private static readonly string[] NavbarShadows =
         {
             "none",
-            "0px 2px 3px rgba(0, 0, 0, 0.04)",
-            "0px 3px 5px rgba(0, 0, 0, 0.1)"
+            "0 2px 3px rgba(0, 0, 0, 0.04)",
+            "0 3px 5px rgba(0, 0, 0, 0.1)",
+            "0 4px 2px -2px rgba(0,0,0,0.3)"
         };
 
         private static readonly string[] NavbarPadding =
