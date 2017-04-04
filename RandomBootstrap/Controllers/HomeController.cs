@@ -32,6 +32,76 @@ namespace RandomBootstrap.Controllers
             return Redirect(Url.Action("Index", new { Seed = newSeed }));
         }
 
+        public IActionResult Alerts(int? seed)
+        {
+            if (seed.HasValue)
+            {
+                return View(new RandomViewModel
+                {
+                    Seed = seed.Value
+                });
+            }
+
+            var newSeed = Random.Next();
+            return Redirect(Url.Action("Index", new { Seed = newSeed }));
+        }
+
+        public IActionResult Breadcrumbs(int? seed)
+        {
+            if (seed.HasValue)
+            {
+                return View(new RandomViewModel
+                {
+                    Seed = seed.Value
+                });
+            }
+
+            var newSeed = Random.Next();
+            return Redirect(Url.Action("Index", new { Seed = newSeed }));
+        }
+
+        public IActionResult Buttons(int? seed)
+        {
+            if (seed.HasValue)
+            {
+                return View(new RandomViewModel
+                {
+                    Seed = seed.Value
+                });
+            }
+
+            var newSeed = Random.Next();
+            return Redirect(Url.Action("Index", new { Seed = newSeed }));
+        }
+
+        public IActionResult Modal(int? seed)
+        {
+            if (seed.HasValue)
+            {
+                return View(new RandomViewModel
+                {
+                    Seed = seed.Value
+                });
+            }
+
+            var newSeed = Random.Next();
+            return Redirect(Url.Action("Index", new { Seed = newSeed }));
+        }
+
+        public IActionResult Navs(int? seed)
+        {
+            if (seed.HasValue)
+            {
+                return View(new RandomViewModel
+                {
+                    Seed = seed.Value
+                });
+            }
+
+            var newSeed = Random.Next();
+            return Redirect(Url.Action("Index", new { Seed = newSeed }));
+        }
+
         public async Task<IActionResult> Bootstrap(int seed)
         {
             var bootstrap = await _bootstrapRandomGenerator.GetBootstrapAsync(seed);

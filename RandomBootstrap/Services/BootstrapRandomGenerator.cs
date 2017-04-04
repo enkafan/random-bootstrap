@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,35 +17,6 @@ namespace RandomBootstrap.Services
         private readonly IMemoryCache _memoryCache;
         private readonly IFontService _fontService;
         private readonly IColorService _colorService;
-
-        private static readonly Func<MaterialDesignColors, (MaterialDesignColors.IColor Color, string Name)>[] ColorLookups = {
-            c => (c.amber, "Amber"),
-            c => (c.blue, "Blue"),
-            c => (c.bluegrey, "Blue Grey"),
-            c => (c.brown, "Brown"),
-            c => (c.cyan, "Cyan"),
-            c => (c.deeporange ,"Deep Orange"),
-            c => (c.deeppurple, "Deep Purple"),
-            c => (c.green, "Green"),
-            c => (c.grey, "Grey"),
-            c => (c.indigo, "Indigo"),
-            c => (c.lightblue, "Light Blue"),
-            c => (c.lightgreen, "Light Green"),
-            c => (c.lime, "Lime"),
-            c => (c.orange, "Orange"),
-            c => (c.pink, "Pink"),
-            c => (c.purple, "Purple"),
-            c => (c.red, "Red"),
-            c => (c.teal, "Teal"),
-            c => (c.yellow, "Yellow")
-        };
-
-        private static readonly Func<MaterialDesignColors.IColor, (string Color, string Name)>[] Hues = {
-            color => (color._700, "700"),
-            color => (color._800, "800"),
-            color => (color._600, "600"),
-            color => (color._900, "900")
-        };
 
         private static readonly string[] BaseFontSizes = {
             "87.5%",
@@ -209,20 +179,13 @@ namespace RandomBootstrap.Services
             }
             else
             {
-                stringBuilder.AppendLine($".navbar-custom {{@extend .navbar-inverse; @extend .bg-primary;}}");
+                stringBuilder.AppendLine(".navbar-custom {@extend .navbar-inverse; @extend .bg-primary;}");
             }
+
+            stringBuilder.AppendLine(".body-content {margin-top: ($navbar-padding-y * 2 + 4); }; // not part of the theme, but for fixed navbar");
 
             return stringBuilder.ToString();
         }
-
-        private static bool IsDark(KeyValuePair<string, HarmonyColor> color,
-            Dictionary<string, HarmonyColor> harmonyColors) => color.Value.ContrastColor == "light" && color.Value
-                                                                   .AllHarmonyColors()
-                                                                   .Select(c => harmonyColors[c])
-                                                                   .Any(c => c.ContrastColor == "light");
-
-        private static bool IsLightWithDarkShades(KeyValuePair<string, HarmonyColor> color, Dictionary<string, HarmonyColor> harmonyColors) => color.Value.ContrastColor == "dark" && color.Value.Shades.Any(i => harmonyColors[i].ContrastColor == "light");
-
 
         public async Task<string> GetBootstrapAsync(int seed)
         {
